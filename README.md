@@ -1,2 +1,9 @@
-# Selenium_Assignment
-Software quality and testing - Selenium assignment
+## Selenium UI Test -  costco.com 
+
+Software Quality and Testing Course - Selenium Big Asssignment
+
+The website: [costco](https://www.costco.com/)
+
+## Features
+
+More details about the features of this project can be found in the [GoogleSheet](https://docs.google.com/spreadsheets/d/190FFWUewLnTB0bbDspILX6vPCG0wOpYGg2xlW7krlMU/edit?gid=0#gid=0)
