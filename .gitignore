@@ -1,0 +1,8 @@
+.gradle/
+build/
+
+*.DS_Store
+
+.vscode/
+
+config.properties
