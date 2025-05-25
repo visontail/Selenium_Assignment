@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  selenium:
+    image: selenium/standalone-chrome-debug:latest
+    environment:
+      - VNC_NO_PASSWORD=1
+      - SCREEN_WIDTH=1800
+      - SCREEN_HEIGHT=960
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+
+  novnc:
+    image: javanile/novnc
+    environment:
+      - REMOTE_HOST=selenium
+      - REMOTE_PORT=5900
+    ports:
+      - "8081:8081"
+    depends_on:
+      - selenium
+
+  ubuntu:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/home/selenium
+    depends_on:
+      - selenium
+      - novnc
+
+  test-runner:
+    image: gradle:7.6.0-jdk11
+    volumes:
+      - .:/app
+    working_dir: /app
+    depends_on:
+      - selenium
+    command: gradle clean test
