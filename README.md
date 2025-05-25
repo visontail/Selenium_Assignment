@@ -1,8 +1,8 @@
-## Selenium UI Test -  costco.com 
+## Selenium UI Test -  vitmedical.hu
 
 Software Quality and Testing Course - Selenium Big Asssignment
 
-The website: [costco](https://www.costco.com/)
+The website: [vitmedical](https://vitmedical.hu/)
 
 ## Features
 
