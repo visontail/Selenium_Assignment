@@ -3,6 +3,10 @@ build/
 
 *.DS_Store
 
-.vscode/
+.idea
 
 config.properties
+
+/gradlew
+/gradlew.bat
+/gradle
