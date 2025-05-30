@@ -5,7 +5,7 @@ build/
 
 .idea
 
-config.properties
+#config.properties
 
 /gradlew
 /gradlew.bat
