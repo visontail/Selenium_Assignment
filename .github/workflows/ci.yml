@@ -10,9 +10,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Run tests via docker-compose
+    - name: Run tests via docker compose
       run: |
-        docker-compose up -d selenium
+        docker compose up -d selenium
         sleep 15
-        docker-compose run --rm test-runner gradle clean test
-        docker-compose down
+        docker compose run --rm test-runner gradle clean test
+        docker compose down
