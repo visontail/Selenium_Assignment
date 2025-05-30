@@ -1,12 +1,12 @@
 package pages;
 
 import base.PageBase;
+import utils.TestDataGenerator;
 import utils.WaitUtils;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 
 public class AddressPage extends PageBase {
@@ -37,7 +37,7 @@ public class AddressPage extends PageBase {
         driver.findElement(addressLink).click();
     }
 
-    public void addNewAddress(String firstName, String lastName, String address, String cityName, String postalCode, String phone) {
+    public void addNewAddress(String firstName, String lastName, String address, String postalCode, String phone) {
         System.out.println("Starting 'add new address' process..");
         System.out.println("Click to add new address.");
         WaitUtils.waitForClickable(driver, addNewAddressBtn);
@@ -45,6 +45,10 @@ public class AddressPage extends PageBase {
 
         System.out.println("Waiting for address form to be visible.");
         WaitUtils.waitForVisibility(driver, addressForm);
+
+        // Generate a random city name
+        String cityName = TestDataGenerator.generateRandomCityName();
+        System.out.println("Generated random city: " + cityName);
 
         System.out.println("Filling in address form.");
         driver.findElement(firstNameField).sendKeys(firstName);

@@ -17,7 +17,6 @@ public class AddressTest extends BaseTest {
         String firstName = ConfigReader.get("address.firstName");
         String lastName = ConfigReader.get("address.lastName");
         String address1 = ConfigReader.get("address.address1");
-        String city = ConfigReader.get("address.city");
         String postalCode = ConfigReader.get("address.postalCode");
         String phone = ConfigReader.get("address.phone");
 
@@ -30,7 +29,7 @@ public class AddressTest extends BaseTest {
         // Add new address
         AddressPage addressPage = new AddressPage(driver);
         addressPage.openAddressSection();
-        addressPage.addNewAddress(firstName, lastName, address1, city, postalCode, phone);
+        addressPage.addNewAddress(firstName, lastName, address1, postalCode, phone);
 
         // Assertion
         assertTrue("Address was not found", addressPage.isAddressDisplayed("Johnny Bravo"));
