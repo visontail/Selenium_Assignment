@@ -15,10 +15,12 @@ public class StaticPage extends PageBase {
     }
 
     public void open(String url) {
+        System.out.println("Opening static page: " + url);
         driver.get(url);
     }
 
     public String getClubMemberText() {
+        System.out.println("Waiting for club member text to be visible.");
         WebElement clubMemberText = wait.until(ExpectedConditions.visibilityOfElementLocated(textClubMember));
         return clubMemberText.getText();
     }
