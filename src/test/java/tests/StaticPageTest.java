@@ -17,7 +17,6 @@ public class StaticPageTest extends BaseTest {
         page.open(staticUrl);
 
         String clubMemberText = page.getClubMemberText();
-        System.out.println("Club member text: " + clubMemberText);
         assertFalse("Club member should contain text", clubMemberText.isEmpty());
         assertTrue("Club member text should contain 'klub'", clubMemberText.toLowerCase().contains("klub"));
 
