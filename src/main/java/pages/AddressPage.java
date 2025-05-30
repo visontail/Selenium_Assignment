@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+
 
 public class AddressPage extends PageBase {
 
@@ -17,6 +19,8 @@ public class AddressPage extends PageBase {
     private final By lastNameField = By.xpath("//input[@id='AddressLastNameNew']");
     private final By addressField = By.xpath("//input[@id='AddressAddress1New']");
     private final By cityField = By.xpath("//input[@id='AddressCityNew']");
+    private final By countryDropdown = By.xpath("//select[@id='AddressCountryNew']");
+    private final By countrySelectOption = By.xpath("//option[@value='Hungary']");
     private final By zipField = By.xpath("//input[@id='AddressZipNew']");
     private final By phoneField = By.xpath("//input[@id='AddressPhoneNew']");
 
@@ -47,6 +51,8 @@ public class AddressPage extends PageBase {
         driver.findElement(lastNameField).sendKeys(lastName);
         driver.findElement(addressField).sendKeys(address);
         driver.findElement(cityField).sendKeys(cityName);
+        driver.findElement(countryDropdown).click();
+        driver.findElement(countrySelectOption).click();
         driver.findElement(zipField).sendKeys(postalCode);
         driver.findElement(phoneField).sendKeys(phone);
 
