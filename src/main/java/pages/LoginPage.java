@@ -6,9 +6,10 @@ import utils.WaitUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.net.URI;
+
 public class LoginPage extends PageBase {
 
-    private final By closePopupButton = By.xpath("//span[@aria-label='dismiss cookie message']");
     private final By loginForm = By.id("CustomerLoginForm");
     private final By emailField = By.cssSelector("input#CustomerEmail");
     private final By passwordField = By.cssSelector("input#CustomerPassword");
@@ -21,17 +22,30 @@ public class LoginPage extends PageBase {
 
 
     public void openLoginPage(String url) {
-        // Open the login page and close any popup if present
-        System.out.println("Opening login page: " + url);
+        // Open the login page and handle any consent popups
         driver.get(url);
-        closePopupIfPresent();
+        injectConsentCookie();
+        System.out.println("Opening login page: " + url);
+        // Refresh the page to ensure the consent cookie is applied
+        driver.navigate().refresh();
     }
 
-    private void closePopupIfPresent() {
-        // Check if the close button for the cookie popup is present and clicks it
-        System.out.println("Closing popup");
-        WebElement closeCookieBtn = WaitUtils.waitForClickable(driver, closePopupButton);
-        closeCookieBtn.click();
+    private void injectConsentCookie() {
+        // Inject a cookie to bypass the consent popup
+        System.out.println("Adding consent cookie.");
+        Cookie consentCookie = new Cookie.Builder("cookie_consent", "true")
+                .domain(getDomainFromCurrentUrl())
+                .path("/")
+                .isHttpOnly(false)
+                .isSecure(false)
+                .build();
+        driver.manage().addCookie(consentCookie);
+    }
+
+    private String getDomainFromCurrentUrl() {
+        // Extract the domain from the current URL
+        String currentUrl = driver.getCurrentUrl();
+        return URI.create(currentUrl).getHost();
     }
 
     public void login(String email, String password) {
